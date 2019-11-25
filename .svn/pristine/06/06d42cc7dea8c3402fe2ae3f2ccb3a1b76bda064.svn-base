@@ -1,0 +1,560 @@
+// pages/bill/bill.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    //总支付金额
+    needPayTotal: '',
+    //选中的订单
+    selectedBill: [],
+    //全选
+    selectAll: false,
+    //总金额
+    totalPrice: '',
+    //总选择条数
+    selectCount: '',
+    //当前页 账单详细
+    billInfoList: [],
+    //当前页 未支付 账单的code与price组成的map
+    unReceivedMap: {},
+
+    //当前账单的index
+    billIndex: '',
+
+    waterUnReceivedList: [],
+    waterUnReceivedMap: {},
+    waterReceivedList: [],
+
+    rentUnReceivedList: [],
+    rentUnReceivedMap: {},
+    rentReceivedList: [],
+
+    electricityUnReceivedList: [],
+    electricityUnReceivedMap: {},
+    electricityReceivedList: []
+
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+
+    this.setData({
+      rentUnReceivedList: [{
+        code: "1",
+        billName: "租金",
+        receivablePrice: "100.34",
+        billingTimeStart: "2019.2.1",
+        billingTimeEnd: "2019.3.1",
+        payStatusName: "未支付",
+        lastReceivingDate: "2019.3.12"
+      },
+      {
+        code: "2",
+        billName: "租金",
+        receivablePrice: "200.45",
+        billingTimeStart: "2019.2.1",
+        billingTimeEnd: "2019.3.1",
+        payStatusName: "未支付",
+        lastReceivingDate: "2019.3.12"
+      },
+      {
+        code: "3",
+        billName: "租金",
+        receivablePrice: "200",
+        billingTimeStart: "2019.2.1",
+        billingTimeEnd: "2019.3.1",
+        payStatusName: "未支付",
+        lastReceivingDate: "2019.3.12"
+      },
+      {
+        code: "4",
+        billName: "租金",
+        receivablePrice: "200",
+        billingTimeStart: "2019.2.1",
+        billingTimeEnd: "2019.3.1",
+        payStatusName: "未支付",
+        lastReceivingDate: "2019.3.12"
+      },
+      {
+        code: "5",
+        billName: "租金",
+        receivablePrice: "200",
+        billingTimeStart: "2019.2.1",
+        billingTimeEnd: "2019.3.1",
+        payStatusName: "未支付",
+        lastReceivingDate: "2019.3.12"
+      },
+      {
+        code: "6",
+        billName: "租金",
+        receivablePrice: "200",
+        billingTimeStart: "2019.2.1",
+        billingTimeEnd: "2019.3.1",
+        payStatusName: "未支付",
+        lastReceivingDate: "2019.3.12"
+      },
+      {
+        code: "7",
+        billName: "租金",
+        receivablePrice: "200",
+        billingTimeStart: "2019.2.1",
+        billingTimeEnd: "2019.3.1",
+        payStatusName: "未支付",
+        lastReceivingDate: "2019.3.12"
+      },
+      {
+        code: "8",
+        billName: "租金",
+        receivablePrice: "200",
+        billingTimeStart: "2019.2.1",
+        billingTimeEnd: "2019.3.1",
+        payStatusName: "未支付",
+        lastReceivingDate: "2019.3.12"
+      },
+      {
+        code: "9",
+        billName: "租金",
+        receivablePrice: "200",
+        billingTimeStart: "2019.2.1",
+        billingTimeEnd: "2019.3.1",
+        payStatusName: "未支付",
+        lastReceivingDate: "2019.3.12"
+      },
+      {
+        code: "10",
+        billName: "租金",
+        receivablePrice: "300.98",
+        billingTimeStart: "2019.2.1",
+        billingTimeEnd: "2019.3.1",
+        payStatusName: "未支付",
+        lastReceivingDate: "2019.3.12"
+      }
+      ],
+
+      waterUnReceivedList: [{
+          code: "1",
+          billName: "水费",
+          receivablePrice: "100.34",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "未支付",
+          lastReceivingDate: "2019.3.12"
+        },
+        {
+          code: "2",
+          billName: "水费",
+          receivablePrice: "200.45",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "未支付",
+          lastReceivingDate: "2019.3.12"
+        },
+        {
+          code: "3",
+          billName: "水费",
+          receivablePrice: "200",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "未支付",
+          lastReceivingDate: "2019.3.12"
+        },
+        {
+          code: "4",
+          billName: "水费",
+          receivablePrice: "200",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "未支付",
+          lastReceivingDate: "2019.3.12"
+        },
+        {
+          code: "5",
+          billName: "水费",
+          receivablePrice: "200",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "未支付",
+          lastReceivingDate: "2019.3.12"
+        },
+        {
+          code: "6",
+          billName: "水费",
+          receivablePrice: "200",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "未支付",
+          lastReceivingDate: "2019.3.12"
+        },
+        {
+          code: "7",
+          billName: "水费",
+          receivablePrice: "200",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "未支付",
+          lastReceivingDate: "2019.3.12"
+        },
+        {
+          code: "8",
+          billName: "水费",
+          receivablePrice: "200",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "未支付",
+          lastReceivingDate: "2019.3.12"
+        },
+        {
+          code: "9",
+          billName: "水费",
+          receivablePrice: "200",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "未支付",
+          lastReceivingDate: "2019.3.12"
+        },
+        {
+          code: "10",
+          billName: "水费",
+          receivablePrice: "300.98",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "未支付",
+          lastReceivingDate: "2019.3.12"
+        }
+      ],
+      waterReceivedList:[
+        {
+          code: "101",
+          billName: "水费",
+          receivablePrice: "100.34",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "已支付",
+          lastReceivingDate: "2019.3.12",
+          payDate: "2019.4.12"
+        },
+        {
+          code: "102",
+          billName: "水费",
+          receivablePrice: "100.34",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "已支付",
+          lastReceivingDate: "2019.3.12",
+          payDate: "2019.4.12"
+        },
+        {
+          code: "103",
+          billName: "水费",
+          receivablePrice: "100.34",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "已支付",
+          lastReceivingDate: "2019.3.12",
+          payDate: "2019.4.12"
+        },
+        {
+          code: "104",
+          billName: "水费",
+          receivablePrice: "100.34",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "已支付",
+          lastReceivingDate: "2019.3.12",
+          payDate: "2019.4.12"
+        },
+        {
+          code: "105",
+          billName: "水费",
+          receivablePrice: "100.34",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "已支付",
+          lastReceivingDate: "2019.3.12",
+          payDate: "2019.4.12"
+        },
+        {
+          code: "106",
+          billName: "水费",
+          receivablePrice: "100.34",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "已支付",
+          lastReceivingDate: "2019.3.12",
+          payDate: "2019.4.12"
+        },
+        {
+          code: "107",
+          billName: "水费",
+          receivablePrice: "100.34",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "已支付",
+          lastReceivingDate: "2019.3.12",
+          payDate: "2019.4.12"
+        },
+        {
+          code: "108",
+          billName: "水费",
+          receivablePrice: "100.34",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "已支付",
+          lastReceivingDate: "2019.3.12",
+          payDate: "2019.4.12"
+        },
+        {
+          code: "109",
+          billName: "水费",
+          receivablePrice: "100.34",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "已支付",
+          lastReceivingDate: "2019.3.12",
+          payDate: "2019.4.12"
+        },
+        {
+          code: "110",
+          billName: "水费",
+          receivablePrice: "100.34",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "已支付",
+          lastReceivingDate: "2019.3.12",
+          payDate: "2019.4.12"
+        },
+        {
+          code: "111",
+          billName: "水费",
+          receivablePrice: "100.34",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "已支付",
+          lastReceivingDate: "2019.3.12",
+          payDate: "2019.4.12"
+        },
+        {
+          code: "112",
+          billName: "水费",
+          receivablePrice: "100.34",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "已支付",
+          lastReceivingDate: "2019.3.12",
+          payDate: "2019.4.12"
+        },
+        {
+          code: "113",
+          billName: "水费",
+          receivablePrice: "100.34",
+          billingTimeStart: "2019.2.1",
+          billingTimeEnd: "2019.3.1",
+          payStatusName: "已支付",
+          lastReceivingDate: "2019.3.12",
+          payDate: "2019.4.12"
+        }
+      ]
+    })
+
+    this._initBillInfo();  
+  },
+
+  //获取账单信息
+  /**
+   * TODO
+   */
+
+  //初始化账单数据
+  _initBillInfo(){
+    const waterData = this.data.waterUnReceivedList;
+    const rentData = this.data.rentUnReceivedList;
+    const electricityData = this.data.electricityUnReceivedList;
+
+    let waterMap = new Map();
+    let rentMap = new Map();
+    let electricityMap = new Map();
+
+    for (var i = 0; i < waterData.length; i++) {
+      waterMap.set(waterData[i].code, waterData[i].receivablePrice);
+    }
+
+    for (var i = 0; i < rentData.length; i++) {
+      rentMap.set(rentData[i].code, rentData[i].receivablePrice);
+    }
+
+    for (var i = 0; i < electricityData.length; i++) {
+      electricityMap.set(electricityData[i].code, electricityData[i].receivablePrice);
+    }
+
+    this.setData({
+      waterUnReceivedMap: waterMap,
+      rentUnReceivedMap: rentMap,
+      electricityUnReceivedMap: electricityMap,
+      //初始化展示租金账单信息
+      billInfoList: rentData,
+      unReceivedMap: rentMap,
+      billIndex: 0
+    })
+  },
+
+  //返回选中的账单
+  selectBack(options) {
+    const selectList = options.detail.selectedBill;
+    
+    if (selectList.length == this.data.billInfoList.length) {
+      this.setData({
+        selectAll: true
+      })
+    } else {
+      this.setData({
+        selectAll: false
+      })
+    }
+
+    let dataMap = this.data.unReceivedMap;
+    this.toSumPrice(selectList, dataMap)   
+  },
+
+  //计算总价
+  toSumPrice(selectList, dataMap){
+    let sumPrice = 0;
+    for (let i = 0; i < selectList.length; i++) {
+      sumPrice = sumPrice + parseFloat(dataMap.get(selectList[i]));
+      sumPrice = parseFloat(sumPrice.toFixed(2));
+    }
+
+    this.setData({
+      totalPrice: sumPrice,
+      selectCount: selectList.length
+    })
+  },
+
+  //切换tab账单
+  changeBill(options) {
+    const index = options.detail.index;
+    this.clearBill();
+    //保存当前账单的index
+    this.setData({
+      billIndex: index
+    })
+
+    if (index == 0) {
+      this.setData({
+        billInfoList: this.data.rentUnReceivedList,
+        unReceivedMap: this.data.rentUnReceivedMap,
+      })
+    } else if (index == 1) {
+      this.setData({
+        billInfoList: this.data.waterUnReceivedList,
+        unReceivedMap: this.data.waterUnReceivedMap,
+      })
+    } else{
+      this.setData({
+        billInfoList: this.data.electricityUnReceivedList,
+        unReceivedMap: this.data.electricityUnReceivedMap,
+      })
+    }
+
+  },
+  //支付状tab态切换
+  changePayStatus(options) {
+    const index = options.detail.index;
+    this.clearBill();
+    const billIndex = this.data.billIndex;
+    switch (billIndex) {
+      case 0:
+        switch (index) {
+          case 0:
+            this.setData({
+              billInfoList: this.data.rentUnReceivedList,
+              unReceivedMap: this.data.rentUnReceivedMap,
+            })
+            break;
+          case 1:
+            this.setData({
+              billInfoList: this.data.rentReceivedList
+            })
+            break;
+        }
+        break;
+      case 1:
+        switch (index) {
+          case 0:
+            this.setData({
+              billInfoList: this.data.waterUnReceivedList,
+              unReceivedMap: this.data.waterUnReceivedMap,
+            })
+            break;
+          case 1:
+            this.setData({
+              billInfoList: this.data.waterReceivedList
+            })
+            
+            break;
+        }
+        break;
+      case 2:
+        switch (index) {
+          case 0:
+            this.setData({
+              billInfoList: this.data.electricityUnReceivedList,
+              unReceivedMap: this.data.electricityUnReceivedMap,
+            })
+            break;
+          case 1:
+            this.setData({
+              billInfoList: this.data.electricityReceivedList
+            })
+            break;
+        }
+        break;
+    }
+  },
+
+  //清空账单选中
+  clearBill() {
+    this.setData({
+      //总支付金额
+      needPayTotal: '',
+      //选中的订单
+      selectedBill: [],
+      //全选
+      selectAll: false,
+      //总金额
+      totalPrice: '',
+      //总选择条数
+      selectCount: '',
+      //当前页 账单详细
+      billInfoList: [],
+      //当前页 未支付 账单的code与price组成的map
+      unReceivedMap: {},
+      //当前页 已支付 账单
+    })
+  },
+
+  //全选返回
+  selectAllBack(options) {
+    //获取bill-info组件的对象
+    // const my_check = this.selectComponent('#waterBill');
+    // my_check.selectAll(options.detail.checked)
+    let codeList = [];
+    if (options.detail.checked) {
+      codeList = this.data.billInfoList.map(res => { return res.code })
+      this.setData({
+        selectedBill: codeList
+      })
+
+    } else{
+      this.setData({
+        selectedBill: []
+      })
+    }
+    let dataMap = this.data.unReceivedMap;
+    this.toSumPrice(codeList, dataMap);
+  },
+
+})

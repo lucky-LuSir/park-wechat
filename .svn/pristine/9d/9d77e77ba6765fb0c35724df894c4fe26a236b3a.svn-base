@@ -1,0 +1,47 @@
+<!--pages/home/home.wxml-->
+<view class="root">
+  <van-cell-group>
+    <van-field
+      left-icon='phone-o'
+      value="{{ phoneNum }}"
+      required
+      clearable
+      placeholder="请输入手机号"
+      bind:blur="setPhoneNUm"
+    />
+
+    <van-field 
+      required
+      left-icon='bulb-o'
+      id="code" 
+      name="codeImg" 
+      placeholder="请输入图形验证码"
+      value="{{ imgCode }}"
+      error-message="{{ imgError }}"
+      bind:blur="setImg"
+    />
+    <view style='position:relative;' bindtap="onTap">
+      <canvas 
+        style="width:160rpx;height:70rpx;position:absolute;right:0rpx;bottom:10rpx;text-align: center;z-index:9999;"                canvas-id="canvas">
+      </canvas>
+    </view>
+    
+    <van-field
+      required
+      left-icon='sign'
+      value="{{ sms }}"
+      center
+      clearable
+      placeholder="请输入短信验证码"
+      border=true
+      use-button-slot
+      bind:blur="setSMS"
+    >
+      <van-button bind:click="sendSMS" slot="button" size="small" type="primary">发送验证码</van-button>
+    </van-field>
+  </van-cell-group>
+  <view class="loginView">
+    <van-button size="small" type="primary" bind:click="toLogin">登录</van-button>
+  </view>
+</view>
+

@@ -1,0 +1,11 @@
+<van-cell-group wx:for="{{ contractList }}" wx:key="index">
+  <van-cell title="合同编号" value="{{ item.ctName }}"/>
+  <van-cell title="入驻园区" value="{{ item.pkName }}"/>
+  
+  <van-cell is-link 
+            title="查看详情"
+            link-type="navigateTo"
+            url="/pages/contract/detail/contractDetail?ctCode={{ item.ctCode }}"/>
+  <view class="background_view"></view>
+</van-cell-group>
+

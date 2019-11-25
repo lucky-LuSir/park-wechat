@@ -1,0 +1,48 @@
+<!--pages/personal/personal.wxml-->
+<view class="userInfo">
+  <view class="userinfo-avatar">
+  <open-data type="userAvatarUrl"></open-data>
+  </view>
+</view>
+<view>
+
+  <van-cell-group>
+    <van-cell
+    is-link
+    title="合同信息"
+    link-type="navigateTo"
+    url="/pages/contract/contract"
+    />
+
+    <van-cell
+    is-link
+    title="账单信息"
+    link-type="navigateTo"
+    url="/pages/bill/bill"
+    />
+
+    <van-cell
+    is-link
+    title="问题反馈"
+    link-type="navigateTo"
+    url="/pages/feedback/feedback"
+    />
+
+    <van-cell
+    is-link
+    title="关于我们"
+    link-type="navigateTo"
+    url="/pages/about/about"
+    />
+
+    <van-cell
+    is-link
+    title="联系我们"
+    link-type="navigateTo"
+    url="/pages/contact/contact"
+    />
+  </van-cell-group>
+</view>
+
+
+

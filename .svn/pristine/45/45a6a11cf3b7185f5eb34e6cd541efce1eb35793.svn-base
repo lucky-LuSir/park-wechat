@@ -1,0 +1,29 @@
+/* component/bill-info/bill-info.wxss */
+.bill-info{
+  padding-bottom: 130rpx;
+}
+
+.cut-line{
+  height: 20rpx;
+  background: rgb(245, 243, 243);
+}
+
+
+
+.payBox{
+  /* border-top: 2rpx solid #1E90FF; */
+  
+  padding: 20rpx 0 20rpx 0;
+  display: flex;
+}
+.select-box{
+  align-self:center;
+}
+
+.price-l{
+  margin-left: 20rpx;
+  width: 490rpx
+}
+/* .price-r{
+  margin-left: 250rpx;
+} */

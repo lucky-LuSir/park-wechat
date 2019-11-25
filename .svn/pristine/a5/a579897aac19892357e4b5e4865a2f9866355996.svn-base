@@ -1,0 +1,3 @@
+let baseURL = 'http://localhost:8380/park/';
+
+export default baseURL;

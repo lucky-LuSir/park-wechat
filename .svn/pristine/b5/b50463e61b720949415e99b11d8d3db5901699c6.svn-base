@@ -1,0 +1,98 @@
+// pages/bill/bill.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    selectedBill:[],
+    waterUnReceivedList: [
+      {
+        waterCode: "1",
+        receivablePrice: "200",
+        lastBillingTime: "2019.2.1",
+        currentBillingTime: "2019.3.1",
+        payStatusName: "未支付",
+        receivingDate: "2019.3.12"
+      },
+      {
+        waterCode: "2",
+        receivablePrice: "200",
+        lastBillingTime: "2019.2.1",
+        currentBillingTime: "2019.3.1",
+        payStatusName: "未支付",
+        receivingDate: "2019.3.12"
+      },
+      {
+        waterCode: "3",
+        receivablePrice: "200",
+        lastBillingTime: "2019.2.1",
+        currentBillingTime: "2019.3.1",
+        payStatusName: "未支付",
+        receivingDate: "2019.3.12"
+      },
+      {
+        waterCode: "4",
+        receivablePrice: "200",
+        lastBillingTime: "2019.2.1",
+        currentBillingTime: "2019.3.1",
+        payStatusName: "未支付",
+        receivingDate: "2019.3.12"
+      },
+      {
+        waterCode: "5",
+        receivablePrice: "200",
+        lastBillingTime: "2019.2.1",
+        currentBillingTime: "2019.3.1",
+        payStatusName: "未支付",
+        receivingDate: "2019.3.12"
+      },
+      {
+        waterCode: "6",
+        receivablePrice: "200",
+        lastBillingTime: "2019.2.1",
+        currentBillingTime: "2019.3.1",
+        payStatusName: "未支付",
+        receivingDate: "2019.3.12"
+      },
+      {
+        waterCode: "7",
+        receivablePrice: "200",
+        lastBillingTime: "2019.2.1",
+        currentBillingTime: "2019.3.1",
+        payStatusName: "未支付",
+        receivingDate: "2019.3.12"
+      },
+      {
+        waterCode: "8",
+        receivablePrice: "200",
+        lastBillingTime: "2019.2.1",
+        currentBillingTime: "2019.3.1",
+        payStatusName: "未支付",
+        receivingDate: "2019.3.12"
+      }
+    ]
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
+  },
+
+//返回上一页
+  onClickLeft(){
+    wx.navigateBack({
+      delta: 1
+    })
+  },
+
+//选择账单
+  onChange(event){
+    console.log(event);
+    this.setData({
+      selectedBill: event.detail
+    })
+  }
+})

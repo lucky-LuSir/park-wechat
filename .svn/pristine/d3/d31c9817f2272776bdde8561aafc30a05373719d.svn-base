@@ -1,0 +1,23 @@
+
+.pay-statistics{
+   padding-bottom: 10rpx;
+   padding-top: 10rpx;
+   position: fixed;
+   bottom: 0rpx;
+   display: flex;
+   width: 698rpx;
+   /* width: 93%; */
+   background: white;
+
+}
+.select-box{
+  flex: 1;
+  align-self:center;
+}
+.pay-calculate{
+  flex: 2;
+  align-self:center;
+}
+.pay{
+ flex: 1;
+}

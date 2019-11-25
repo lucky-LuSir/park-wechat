@@ -1,0 +1,4 @@
+// let baseURL = 'http://localhost:8380/park/';
+let baseURL = 'http://poms.yuanquwuyou.com';
+
+export default baseURL;

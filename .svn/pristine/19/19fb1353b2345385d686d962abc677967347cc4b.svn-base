@@ -1,0 +1,62 @@
+<!--pages/bill/bill.wxml-->
+<van-nav-bar
+  class="nav_bar"
+  title="账单信息"
+  left-text="返回"
+  left-arrow
+  bind:click-left="onClickLeft"
+/>
+<van-tabs color="#696969" type="card" class="van-tabs">
+  <van-tab title="租金账单">
+    <van-tabs>
+      <van-tab title="未收">
+        未收
+      </van-tab>
+      <van-tab title="已收">
+        已收
+      </van-tab>
+    </van-tabs>
+  </van-tab>
+  <van-tab title="水费账单">
+    <van-tabs>
+      <van-tab title="未收">
+        <view >
+          <van-checkbox-group value="{{ selectedBill }}" bind:change="onChange">
+            <block wx:for="{{ waterUnReceivedList }}" wx:key="index">
+            <view class="cut-line"></view>
+            <view class="payBox">
+                <van-checkbox name="{{ item.waterCode }}">
+                  <view class="price-l">
+                    <view>￥{{ item.receivablePrice }} <text style="font-size: 20rpx"> 水费</text></view>
+                    <view>{{ item.lastBillingTime }}~{{ item.currentBillingTime }}</view>
+                  </view>
+                  <view class="price-r">
+                    <view>{{ item.payStatusName }}</view>
+                    <view>{{ item.receivingDate }} 前</view>
+                  </view>
+                </van-checkbox>
+              </view>
+              <view class="cut-line"></view>
+            </block>
+          </van-checkbox-group>
+        </view>
+        <view>
+
+        </view>
+      </van-tab>
+      <van-tab title="已收">
+        已收
+      </van-tab>
+    </van-tabs>
+  </van-tab>
+  <van-tab title="电费账单">
+    <van-tabs>
+      <van-tab title="未收">
+        未收
+      </van-tab>
+      <van-tab title="已收">
+        已收
+      </van-tab>
+    </van-tabs>
+  </van-tab>
+</van-tabs>

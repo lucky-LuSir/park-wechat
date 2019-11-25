@@ -1,0 +1,5 @@
+const baseURL = 'http://localhost:8380/park';
+
+export {
+  baseURL
+}

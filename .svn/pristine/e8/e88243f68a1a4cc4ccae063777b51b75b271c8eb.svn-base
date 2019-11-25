@@ -1,0 +1,38 @@
+/* pages/bill/bill.wxss */
+.cut-line{
+  height: 20rpx;
+  background: rgb(245, 243, 243);
+}
+.payBox{
+  /* border-top: 2rpx solid #1E90FF; */
+  
+  padding: 20rpx 0 20rpx 0;
+}
+.price-l{
+  float: left;
+  width:350rpx;
+}
+.price-r{
+  float: left;
+  
+}
+
+/* .nav_bar {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: #fff;
+  overflow: hidden;
+  z-index: 999;
+} */
+
+/* .van-tabs {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 50px;
+  background: #fff;
+  overflow: hidden;
+  z-index: 999;
+} */
